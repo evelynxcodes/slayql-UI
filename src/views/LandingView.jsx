@@ -8,7 +8,6 @@ import BentoGrid from '../components/BentoGrid';
 import BenchmarkSection from '../components/BenchmarkSection';
 import AblationSection from '../components/AblationSection';
 import DatabaseConnectors from '../components/DatabaseConnectors';
-import AboutSection from '../components/AboutSection';
 import Footer from '../components/Footer';
 import { Github } from 'lucide-react';
 
@@ -36,7 +35,7 @@ export default function LandingView({ setView, onDatabaseConnect }) {
             </p>
           </div>
 
-          <ChatWorkspace onQueryExecuted={(data) => console.log('Landing query execution:', data)} />
+          <ChatWorkspace setView={setView} onQueryExecuted={(data) => console.log('Landing query execution:', data)} />
         </div>
       </section>
 
@@ -59,9 +58,6 @@ export default function LandingView({ setView, onDatabaseConnect }) {
       <DatabaseConnectors onConnected={(dbName) => {
         if (onDatabaseConnect) onDatabaseConnect(dbName);
       }} />
-
-      {/* About Section */}
-      <AboutSection />
 
       {/* CTA Section */}
       <section class="py-20 bg-gradient-to-br from-indigo-600 via-blue-600 to-indigo-700 relative overflow-hidden">

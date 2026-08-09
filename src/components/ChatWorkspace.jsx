@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Sparkles, MessageSquare, Zap, Network, Target, Code, Table, BarChart3, Copy, Check, FileCheck2 } from 'lucide-react';
 import { MOCK_DATA, SSE_STEPS, SQL_KEYWORDS } from '../mock/mockData';
 
-export default function ChatWorkspace({ onQueryExecuted }) {
+export default function ChatWorkspace({ onQueryExecuted, setView }) {
   const [queryInput, setQueryInput] = useState('');
   const [running, setRunning] = useState(false);
   const [sseActive, setSseActive] = useState(false);
@@ -279,9 +279,25 @@ export default function ChatWorkspace({ onQueryExecuted }) {
             >
               <BarChart3 class="w-3.5 h-3.5" /> Visualization
             </button>
-            <div class="ml-auto pb-2 flex items-center gap-2 text-xs">
-              <span class="px-2 py-1 rounded bg-emerald-50 text-emerald-700 border border-emerald-200">{currentDataset.time}</span>
-              <span class="px-2 py-1 rounded bg-blue-50 text-blue-700 border border-blue-200">{currentDataset.rows_count}</span>
+          </div>
+
+          {/* KPI callouts — trust strip once results land */}
+          <div class="grid grid-cols-2 sm:grid-cols-4 divide-x divide-y sm:divide-y-0 divide-slate-100 border-b border-slate-200 bg-slate-50/60">
+            <div class="px-4 py-3">
+              <div class="text-xl font-extrabold text-slate-900">{currentDataset.time}</div>
+              <div class="text-[11px] font-medium text-slate-400 uppercase tracking-wide mt-0.5">Execution Time</div>
+            </div>
+            <div class="px-4 py-3">
+              <div class="text-xl font-extrabold text-slate-900">{currentDataset.rows_count.replace(/\D/g, '')}</div>
+              <div class="text-[11px] font-medium text-slate-400 uppercase tracking-wide mt-0.5">Rows Returned</div>
+            </div>
+            <div class="px-4 py-3">
+              <div class="text-xl font-extrabold text-slate-900">{currentDataset.graphChain.length}</div>
+              <div class="text-[11px] font-medium text-slate-400 uppercase tracking-wide mt-0.5">Tables Touched</div>
+            </div>
+            <div class="px-4 py-3">
+              <div class="text-xl font-extrabold text-emerald-600">{currentDataset.voteAgreement}</div>
+              <div class="text-[11px] font-medium text-slate-400 uppercase tracking-wide mt-0.5">Candidate Agreement</div>
             </div>
           </div>
 
@@ -344,6 +360,20 @@ export default function ChatWorkspace({ onQueryExecuted }) {
               </div>
             )}
           </div>
+
+          {setView && (
+            <div class="px-4 py-3 border-t border-slate-200 bg-gradient-to-r from-indigo-50 to-blue-50 flex flex-col sm:flex-row items-center justify-between gap-3">
+              <p class="text-xs text-slate-600">
+                This was a live simulated run. Continue exploring your own database in the full workspace.
+              </p>
+              <button
+                onClick={() => setView('dashboard')}
+                class="flex-shrink-0 inline-flex items-center gap-1.5 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold rounded-lg transition-all shadow-md shadow-indigo-100"
+              >
+                Open Full Workspace
+              </button>
+            </div>
+          )}
         </div>
       )}
 

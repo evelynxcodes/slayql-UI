@@ -90,4 +90,39 @@
   .animate-fade-in-up {
     animation: fade-in-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
   }
+
+  /* ─── Architecture Flow Pulse ─────────────────────────────────── */
+  @keyframes flow-move-y {
+    0% { top: -20%; opacity: 0; }
+    15% { opacity: 1; }
+    85% { opacity: 1; }
+    100% { top: 100%; opacity: 0; }
+  }
+
+  .flow-dot-y {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 5px;
+    height: 5px;
+    border-radius: 9999px;
+    animation: flow-move-y 2s linear infinite;
+  }
+
+  @keyframes flow-move-x {
+    0% { left: -5%; opacity: 0; }
+    15% { opacity: 1; }
+    85% { opacity: 1; }
+    100% { left: 105%; opacity: 0; }
+  }
+
+  .flow-dot-x {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 5px;
+    height: 5px;
+    border-radius: 9999px;
+    animation: flow-move-x 2s linear infinite;
+  }
 }

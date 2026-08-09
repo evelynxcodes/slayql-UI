@@ -1,6 +1,44 @@
 import React from 'react';
 import { Network, Target, Repeat, LineChart } from 'lucide-react';
 
+const FEATURES = [
+  {
+    number: '01',
+    icon: Network,
+    tone: 'indigo',
+    title: 'Intelligent Schema Exploration',
+    desc: 'Discovers relevant tables and relationships via graph-based reasoning over the foreign-key structure — surfacing multi-hop joins dense retrieval alone would miss.',
+  },
+  {
+    number: '02',
+    icon: Target,
+    tone: 'amber',
+    title: 'Value-Grounded Query Understanding',
+    desc: 'Ties user intent to real database values with a BM25 index over column contents, resolving ambiguous entities before SQL is written.',
+  },
+  {
+    number: '03',
+    icon: Repeat,
+    tone: 'violet',
+    title: 'Agentic SQL Generation',
+    desc: 'Generates SQL through iterative schema exploration and revision — not a single blind pass — under a strict output contract that eliminates parsing failures.',
+  },
+  {
+    number: '04',
+    icon: LineChart,
+    tone: 'teal',
+    title: 'Interactive Data Exploration',
+    desc: 'Every answer arrives as SQL, a data table, and an automatic chart, so results are understandable at a glance.',
+  },
+];
+
+const TONE_MAP = {
+  indigo: { badge: 'bg-indigo-50 border-indigo-100 group-hover:bg-indigo-100', icon: 'text-indigo-600', hover: 'hover:border-indigo-200 hover:shadow-indigo-50' },
+  amber: { badge: 'bg-amber-50 border-amber-100 group-hover:bg-amber-100', icon: 'text-amber-600', hover: 'hover:border-amber-200 hover:shadow-amber-50' },
+  violet: { badge: 'bg-violet-50 border-violet-100 group-hover:bg-violet-100', icon: 'text-violet-600', hover: 'hover:border-violet-200 hover:shadow-violet-50' },
+  teal: { badge: 'bg-teal-50 border-teal-100 group-hover:bg-teal-100', icon: 'text-teal-600', hover: 'hover:border-teal-200 hover:shadow-teal-50' },
+};
+
 export default function BentoGrid() {
   return (
     <section id="features" class="py-20 lg:py-28 bg-white border-t border-slate-200">
@@ -9,7 +47,7 @@ export default function BentoGrid() {
         <div class="text-center mb-14">
           <div class="inline-flex items-center gap-2 px-3 py-1 mb-4 rounded-full border border-emerald-200 bg-emerald-50 text-emerald-700 text-xs font-semibold uppercase tracking-wider">
             <span class="inline-block w-2 h-2 rounded-full bg-emerald-500"></span>
-            Capabilities
+            Features
           </div>
           <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900">
             Built for Scalable Schema Exploration.
@@ -19,64 +57,24 @@ export default function BentoGrid() {
           </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-
-          {/* Card 1 */}
-          <div class="bento-card group p-6 rounded-2xl border border-slate-200 bg-white hover:border-indigo-200 hover:shadow-xl hover:shadow-indigo-50 transition-all duration-300">
-            <div class="w-11 h-11 rounded-xl bg-indigo-50 border border-indigo-100 flex items-center justify-center mb-5 group-hover:bg-indigo-100 transition-colors">
-              <Network class="w-5 h-5 text-indigo-600" />
-            </div>
-            <h3 class="text-base font-bold text-slate-900 mb-2">Intelligent Schema Exploration</h3>
-            <p class="text-sm text-slate-500 leading-relaxed">SlayQL automatically discovers relevant tables, columns, and relationships using graph-based reasoning over the foreign-key structure.</p>
-            <ul class="mt-5 space-y-1.5 text-xs text-slate-600">
-              <li class="flex items-center gap-2"><span class="text-emerald-500">✓</span> Foreign-key graph propagation</li>
-              <li class="flex items-center gap-2"><span class="text-emerald-500">✓</span> Multi-hop relationship discovery</li>
-              <li class="flex items-center gap-2"><span class="text-emerald-500">✓</span> Reduced schema noise</li>
-            </ul>
-          </div>
-
-          {/* Card 2 */}
-          <div class="bento-card group p-6 rounded-2xl border border-slate-200 bg-white hover:border-amber-200 hover:shadow-xl hover:shadow-amber-50 transition-all duration-300">
-            <div class="w-11 h-11 rounded-xl bg-amber-50 border border-amber-100 flex items-center justify-center mb-5 group-hover:bg-amber-100 transition-colors">
-              <Target class="w-5 h-5 text-amber-600" />
-            </div>
-            <h3 class="text-base font-bold text-slate-900 mb-2">Value-Grounded Query Understanding</h3>
-            <p class="text-sm text-slate-500 leading-relaxed">SlayQL connects user intent with actual database values instead of matching only on column descriptions.</p>
-            <ul class="mt-5 space-y-1.5 text-xs text-slate-600">
-              <li class="flex items-center gap-2"><span class="text-emerald-500">✓</span> BM25 value retrieval</li>
-              <li class="flex items-center gap-2"><span class="text-emerald-500">✓</span> Entity matching</li>
-              <li class="flex items-center gap-2"><span class="text-emerald-500">✓</span> Ambiguous value resolution</li>
-            </ul>
-          </div>
-
-          {/* Card 3 */}
-          <div class="bento-card group p-6 rounded-2xl border border-slate-200 bg-white hover:border-violet-200 hover:shadow-xl hover:shadow-violet-50 transition-all duration-300">
-            <div class="w-11 h-11 rounded-xl bg-violet-50 border border-violet-100 flex items-center justify-center mb-5 group-hover:bg-violet-100 transition-colors">
-              <Repeat class="w-5 h-5 text-violet-600" />
-            </div>
-            <h3 class="text-base font-bold text-slate-900 mb-2">Agentic SQL Generation</h3>
-            <p class="text-sm text-slate-500 leading-relaxed">Generate reliable SQL through iterative reasoning, dynamic schema exploration, and revision — not a single blind pass.</p>
-            <ul class="mt-5 space-y-1.5 text-xs text-slate-600">
-              <li class="flex items-center gap-2"><span class="text-emerald-500">✓</span> Dynamic schema exploration (IT-EE)</li>
-              <li class="flex items-center gap-2"><span class="text-emerald-500">✓</span> SQL revision loop</li>
-              <li class="flex items-center gap-2"><span class="text-emerald-500">✓</span> Strict output formatting (QOC)</li>
-            </ul>
-          </div>
-
-          {/* Card 4 */}
-          <div class="bento-card group p-6 rounded-2xl border border-slate-200 bg-white hover:border-teal-200 hover:shadow-xl hover:shadow-teal-50 transition-all duration-300">
-            <div class="w-11 h-11 rounded-xl bg-teal-50 border border-teal-100 flex items-center justify-center mb-5 group-hover:bg-teal-100 transition-colors">
-              <LineChart class="w-5 h-5 text-teal-600" />
-            </div>
-            <h3 class="text-base font-bold text-slate-900 mb-2">Interactive Data Exploration</h3>
-            <p class="text-sm text-slate-500 leading-relaxed">Understand results beyond the raw SQL — inspect the generated query, the returned table, and an automatic visualization side by side.</p>
-            <ul class="mt-5 space-y-1.5 text-xs text-slate-600">
-              <li class="flex items-center gap-2"><span class="text-emerald-500">✓</span> Automatic visualization</li>
-              <li class="flex items-center gap-2"><span class="text-emerald-500">✓</span> Query explanation</li>
-              <li class="flex items-center gap-2"><span class="text-emerald-500">✓</span> Dataset insights</li>
-            </ul>
-          </div>
-
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {FEATURES.map((feature) => {
+            const Icon = feature.icon;
+            const tone = TONE_MAP[feature.tone];
+            return (
+              <div
+                key={feature.number}
+                class={`bento-card group p-6 rounded-2xl border border-slate-200 bg-white hover:shadow-xl transition-all duration-300 flex flex-col items-start ${tone.hover}`}
+              >
+                <span class="text-xs font-bold text-slate-300 tracking-wider mb-4">{feature.number}</span>
+                <div class={`w-11 h-11 rounded-xl border flex items-center justify-center mb-5 transition-colors ${tone.badge}`}>
+                  <Icon class={`w-5 h-5 ${tone.icon}`} />
+                </div>
+                <h3 class="text-base font-bold text-slate-900 mb-2">{feature.title}</h3>
+                <p class="text-sm text-slate-500 leading-relaxed">{feature.desc}</p>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
